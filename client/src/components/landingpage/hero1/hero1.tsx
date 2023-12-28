@@ -2,21 +2,66 @@ import React from "react";
 
 function Hero1() {
   return (
-    <div className="flex h-96 w-full py-5">
-      <div className="flex w-1/3 items-center justify-center bg-red-500">a</div>
-      <div className="w-2/3 bg-blue-500 p-4">
-        <h1>Dani Festas</h1>
-        <p className="text-justify mt-6">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum
-        </p>
+    <div className="flex h-32 w-full py-5">
+      {/* colmeias */}
+      <div className="absolute right-2 flex -translate-y-6 grid-cols-4 flex-col gap-2">
+        <div className="flex gap-4">
+          <div className="h-10 w-10 rounded-full bg-red-500 flex flex-col-reverse">
+            <div className="h-4 w-4 rounded-full bg-white"></div>
+          </div>
+          <div className="h-10 w-10 rounded-full bg-red-500 flex flex-reverse">
+            <div className="h-4 w-4 rounded-full bg-white"></div>
+          </div>
+          <div className="h-10 w-10 rounded-full bg-red-500 flex flex-reverse">
+              <div className="h-4 w-4 rounded-full bg-white"></div>
+          </div>
+          <div className="h-10 w-10 rounded-full bg-red-500 flex flex-row-reverse">
+              <div className="h-4 w-4 rounded-full bg-white"></div>
+          </div>
+          <div className="h-10 w-10 rounded-full bg-red-500 flex flex-reverse">
+              <div className="h-4 w-4 rounded-full bg-white"></div>
+          </div>
+          <div className="h-10 w-10 rounded-full bg-red-500 flex flex-row-reverse">
+              <div className="h-4 w-4 rounded-full bg-white"></div>
+          </div>
+          <div className="h-10 w-10 rounded-full bg-red-500 flex flex-col-reverse">
+              <div className="h-4 w-4 rounded-full bg-white"></div>
+          </div>
+        </div>
+        <div className="flex flex-row-reverse gap-4">
+          <div className="h-10 w-10 rounded-full bg-red-500 flex flex-row-reverse">
+            <div className="h-4 w-4 rounded-full bg-white"></div>
+          </div>
+          <div className="h-10 w-10 rounded-full bg-red-500 flex flex-reverse">
+              <div className="h-4 w-4 rounded-full bg-white"></div>
+          </div>
+          <div className="h-10 w-10 rounded-full bg-red-500 flex flex-col-reverse">
+              <div className="h-4 w-4 rounded-full bg-white"></div>
+          </div>
+          <div className="h-10 w-10 rounded-full bg-red-500 flex flex-reverse">
+              <div className="h-4 w-4 rounded-full bg-white"></div>
+          </div>
+          <div className="h-10 w-10 rounded-full bg-red-500 flex flex-col-reverse">
+              <div className="h-4 w-4 rounded-full bg-white"></div>
+          </div>
+          <div className="h-10 w-10 rounded-full bg-red-500">
+            <div className="h-4 w-4 rounded-full bg-white"></div>
+          </div>
+        </div>
+        <div className="flex flex-row-reverse gap-4">
+          <div className="h-10 w-10 rounded-full bg-red-500 flex flex-row-reverse">
+              <div className="h-4 w-4 rounded-full bg-white"></div>
+          </div>
+          <div className="h-10 w-10 rounded-full bg-red-500 flex flex-row-reverse">
+              <div className="h-4 w-4 rounded-full bg-white"></div>
+          </div>
+          <div className="h-10 w-10 rounded-full bg-red-500 flex flex-col-reverse">
+              <div className="h-4 w-4 rounded-full bg-white"></div>
+          </div>
+          <div className="h-10 w-10 rounded-full bg-red-500 flex flex-reverse">
+              <div className="h-4 w-4 rounded-full bg-white"></div>
+          </div>
+        </div>
       </div>
     </div>
   );

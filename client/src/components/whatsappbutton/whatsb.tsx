@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 function Whatsb() {
   return (
-    <button className="fixed bottom-10 right-10 z-50 flex items-center justify-center rounded-full bg-gradient-to-tr from-green-600 to-green-400 p-3 text-white shadow-sm transition-all duration-200 hover:scale-125 hover:shadow-lg">
+    <button className="fixed bottom-10 right-10 z-50 flex items-center justify-center rounded-full bg-gradient-to-tr from-green-600 to-green-400 p-3 text-white shadow-sm transition-all duration-200 hover:scale-125 hover:shadow-lg z-[100]">
       <Link
         target="_blank"
         href="https://api.whatsapp.com/send/?phone=5519993794432&text&type=phone_number&app_absent=0"

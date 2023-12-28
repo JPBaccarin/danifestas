@@ -25,19 +25,20 @@ export function CarouselHero() {
   return (
     <Carousel
       plugins={[plugin.current]}
-      className="w-full rounded-md"
+      className="w-full"
       onMouseLeave={plugin.current.reset}
     >
       <CarouselContent className="rounded-md">
         {imageMap.map((imageUrl, index) => (
-          <CarouselItem key={index} className="basis-auto rounded-md  ">
+          <CarouselItem key={index} className="p-1">
             <Card className="m-0 ">
-              <CardContent className="flex w-screen sm:w-full aspect-auto h-[75vh] items-center justify-center rounded-md border p-1 ">
+            <CardContent className="flex items-center justify-center p-6">
                 <img
                   src={imageUrl}
                   alt={`Image ${index + 1}`}
                   className="mt-2  max-h-[75vh] w-full rounded-md "
                 />
+                {/* <span className="text-4xl font-semibold">{index + 1}</span> */}
               </CardContent>
             </Card>
           </CarouselItem>

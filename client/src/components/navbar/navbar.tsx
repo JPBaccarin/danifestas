@@ -9,8 +9,8 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { href: "#", text: "Home" },
-  { href: "#", text: "Mini-Table" },
+  { href: "./landingpage", text: "Home" },
+  { href: "./decoracoes", text: "Mini-Table" },
   { href: "#", text: "Decorações" },
   { href: "#", text: "Últimos Eventos" },
   { href: "#", text: "Sobre" },
@@ -19,7 +19,7 @@ const navLinks: NavLink[] = [
 function Navbar() {
   return (
     <div>
-      <nav className="border-b-4 border-slate-800 bg-white ">
+      <nav className="border-b-4 border-amber-300 bg-white ">
         <div className="mx-auto flex w-full flex-wrap items-center justify-between p-4">
           <Link href="#" passHref>
             <div className="flex items-center space-x-3 rtl:space-x-reverse">
@@ -67,7 +67,7 @@ function Navbar() {
                     <div
                       className={`
                       block border-b-2 border-transparent px-3 
-                      py-1 text-gray-900 duration-75 hover:scale-110 hover:border-sky-600 hover:text-blue-400`}
+                      py-1 text-gray-900 duration-75 hover:scale-110 hover:border-amber-950 hover:text-amber-900`}
                     >
                       {link.text}
                     </div>
