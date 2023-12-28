@@ -13,12 +13,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import Link from "next/link";
 
 const formSchema = z.object({
   email: z.string().email("Email Inválido"),
   password: z.string().min(1, "A senha é necessária"),
 });
-export function ProfileForm() {
+export function FormLogin() {
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -38,7 +39,7 @@ export function ProfileForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 mb-2">
         <FormField
           control={form.control}
           name="email"
@@ -75,10 +76,14 @@ export function ProfileForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full">
+
+        <Button type="submit" className="w-full ">
           Login
         </Button>
       </form>
+      <Link href="./signup" className="text-xs text-muted-foreground/50">
+        Cadastrar conta
+      </Link>
     </Form>
   );
 }

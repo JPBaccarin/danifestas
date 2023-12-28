@@ -1,0 +1,35 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsx src/server.ts",
+    "dev": "tsx watch src/server.ts",
+    "build": "tsup src",
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "danifestas"
+  },
+  "keywords": [
+    "eventos",
+    "festas",
+    "portifólio"
+  ],
+  "author": "César Alexandre Teodoro, Felipe Santos Jesus Silva, João Pedro Baccarin Sardinha",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.6.5",
+    "tsup": "^8.0.1",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.1.0",
+    "zod": "^3.22.4"
+  }
+}
