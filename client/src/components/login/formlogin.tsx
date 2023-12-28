@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input";
 
 const formSchema = z.object({
   email: z.string().email("E-Mail Inválido"),
-  password: z.string().min(1, "A senha é necessária") ._addCheck(),
+  password: z.string().min(1, "A senha é necessária") ,
 });
 export function ProfileForm() {
   // 1. Define your form.
