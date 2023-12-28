@@ -27,7 +27,7 @@ export function CarouselPlugin() {
           <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
             <div className="p-1">
               <Card>
-                <CardContent className="flex aspect-video items-center justify-center p-6 border border-red-500">
+                <CardContent className="flex aspect-auto h-96 items-center justify-center p-6 border">
                   <span className="text-4xl font-semibold">{index + 1}</span>
                 </CardContent>
               </Card>

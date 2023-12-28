@@ -3,7 +3,7 @@ import { Facebook, Instagram } from "lucide-react";
 import Link from "next/link";
 
 const Footer: React.FC = () => (
-  <footer className="bottom-0 w-full bg-primary py-6 text-primary-foreground ">
+  <footer className="bottom-1 w-full bg-primary py-6 text-primary-foreground mt-8">
     <div className="container mx-auto flex flex-wrap justify-center md:justify-between ">
       <div className="w-fit  ">
         <img

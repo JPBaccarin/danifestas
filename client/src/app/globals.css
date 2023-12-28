@@ -74,3 +74,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+::-webkit-scrollbar {
+  width: 7px; /* Largura da barra de rolagem */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: gray; /* Cor da "thumb" (o indicador da posição atual) */
+  border-radius: 6px; /* Raio da borda da "thumb" */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Cor da "track" (a parte da barra de rolagem que não é a "thumb") */
+}
