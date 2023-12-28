@@ -1,5 +1,7 @@
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
+import logoP from "../../../public";
 
 interface NavLink {
   href: string;
@@ -8,23 +10,25 @@ interface NavLink {
 
 const navLinks: NavLink[] = [
   { href: "#", text: "Home" },
-  { href: "#", text: "About" },
-  { href: "#", text: "Services" },
-  { href: "#", text: "Pricing" },
-  { href: "#", text: "Contact" },
+  { href: "#", text: "Mini-Table" },
+  { href: "#", text: "Decorações" },
+  { href: "#", text: "Últimos Eventos" },
+  { href: "#", text: "Sobre" },
 ];
 
 function Navbar() {
   return (
     <div>
-      <nav className="border-b-4 border-slate-800 bg-white">
+      <nav className="border-b-4 border-slate-800 bg-white ">
         <div className="mx-auto flex w-full flex-wrap items-center justify-between p-4">
           <Link href="#" passHref>
             <div className="flex items-center space-x-3 rtl:space-x-reverse">
-              <img
-                src="https://scontent.fqps4-1.fna.fbcdn.net/v/t39.30808-6/292954388_407220864774042_2015158424773815475_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=UMWlzXxGPE8AX9aNC6o&_nc_ht=scontent.fqps4-1.fna&oh=00_AfBA6vlx6G1VjaRo4bYD52zpF80jMHJqSupaNPhzeFLa1g&oe=6591F255"
-                className="h-8"
-                alt="DaniFestas Logo"
+              <Image
+                src={logoP}
+                height={75}
+                width={0}
+                className="max-w-20 rounded-lg"
+                alt="asd"
               />
               <span className="self-center whitespace-nowrap text-2xl font-semibold">
                 DaniFestas
@@ -59,11 +63,9 @@ function Navbar() {
             <ul className="flex flex-col items-center justify-center rounded-lg border border-gray-100 pt-2 font-semibold md:flex-row md:space-x-8 md:border-0 rtl:space-x-reverse">
               {navLinks.map((link, index) => (
                 <li key={index}>
-                  <Link
-                    href={link.href}
-                    passHref
-                  >
-                    <div className={`
+                  <Link href={link.href} passHref>
+                    <div
+                      className={`
                       block border-b-2 border-transparent px-3 
                       py-1 text-gray-900 duration-75 hover:scale-110 hover:border-sky-600 hover:text-blue-400`}
                     >

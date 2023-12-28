@@ -2,16 +2,22 @@
 import { Facebook, Instagram, UserCog } from "lucide-react";
 import Link from "next/link";
 import { ModeToggle } from "../ui/theme-toggler";
+import logoP from "../../../public";
+import Image from "next/image";
 
 const Footer: React.FC = () => (
-  <footer className="bottom-0 w-full bg-primary py-6 text-primary-foreground ">
+  <footer className="bottom-1 w-full bg-gray-900 py-6 text-white ">
     <div className="container mx-auto flex flex-wrap justify-center md:justify-between ">
       <div className="flex flex-col items-center justify-center">
-        <img
-          src="https://scontent.fqps4-1.fna.fbcdn.net/v/t39.30808-6/292954388_407220864774042_2015158424773815475_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=UMWlzXxGPE8AX9aNC6o&_nc_ht=scontent.fqps4-1.fna&oh=00_AfBA6vlx6G1VjaRo4bYD52zpF80jMHJqSupaNPhzeFLa1g&oe=6591F255"
-          alt="logo dani festas"
-          className="max-h-32"
+       
+        <Image
+          src={logoP}
+          height={150}
+          width={0}
+          className="max-h-32 rounded-lg"
+          alt="asd"
         />
+
         <div className="flex w-full items-center justify-between pt-2 text-gray-300">
           <Link
             target="_blank"
@@ -111,9 +117,12 @@ const Footer: React.FC = () => (
         <div>
           <h4 className="mb-2 scroll-m-20 border-b border-gray-300/80 text-lg font-semibold tracking-tight first:mt-0">
             Login e tema
-          </h4> 
-          <div className=" flex flex-row gap-5 items-center justify-center">
-            <Link href="login" className="border border-border p-2 rounded-md hover:bg-gray-800 duration-100">
+          </h4>
+          <div className=" flex flex-row items-center justify-center gap-5">
+            <Link
+              href="login"
+              className="rounded-md border border-border p-2 duration-100 hover:bg-gray-800"
+            >
               <UserCog></UserCog>
             </Link>
 

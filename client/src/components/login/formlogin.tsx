@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -16,8 +15,8 @@ import {
 import { Input } from "@/components/ui/input";
 
 const formSchema = z.object({
-  email: z.string().email("E-Mail Inválido"),
-  password: z.string().min(1, "A senha é necessária") ,
+  email: z.string().email("Email Inválido"),
+  password: z.string().min(1, "A senha é necessária"),
 });
 export function ProfileForm() {
   // 1. Define your form.
@@ -28,8 +27,12 @@ export function ProfileForm() {
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+    if (values.email === "admin@email.com" && values.password === "admin") {
+      console.log("Login bem-sucedido! Usuário:", values.email);
+    } else {
+      console.log("Credenciais inválidas. Tente novamente.");
+    }
+
     console.log(values);
   }
 

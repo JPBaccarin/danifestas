@@ -2,7 +2,7 @@ import React from "react";
 
 function Hero1() {
   return (
-    <div className="flex h-96 w-full pt-12">
+    <div className="flex h-96 w-full py-5">
       <div className="flex w-1/3 items-center justify-center bg-red-500">a</div>
       <div className="w-2/3 bg-blue-500 p-4">
         <h1>Dani Festas</h1>
