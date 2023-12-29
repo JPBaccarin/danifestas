@@ -7,12 +7,15 @@ import Whatsb from "@/components/whatsappbutton/whatsb";
 import Hero2 from "@/components/landingpage/hero2/hero2";
 import { CarouselPlugin } from "@/components/landingpage/carousel/carousel";
 import HeroP from "@/components/landingpage/heropartners/herop";
+import { Carousel } from "@/components/ui/carousel";
 
 function Landingpage() {
   return (
     <div>
       <Whatsb></Whatsb>
-      <CarouselPlugin></CarouselPlugin>
+      <div className="w-full">
+        <CarouselPlugin></CarouselPlugin>
+      </div>
       <Hero1></Hero1>
       <Hero2></Hero2>
       <div className="mx-0 mt-8 sm:m-4">
