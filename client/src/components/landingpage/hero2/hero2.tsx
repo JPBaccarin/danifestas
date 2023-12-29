@@ -2,12 +2,17 @@ import React from "react";
 
 function Hero2() {
   return (
-    <div className="flex items-center justify-center font-serif">
-      <div className="w-1/3 flex justify-center items-center">
-        <img src="#" alt="foto danifestas"/>
+    <div className="flex items-center justify-center font-sans">
+      <div className="flex w-1/3 items-center justify-center m-5">
+        <img
+          src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg"
+          alt="foto danifestas"
+        />
       </div>
-      <div className="w-2/3 p-4">
-        <h1 className="font text-center text-3xl font-bold">Dani Festas</h1>
+      <div className="w-2/3 p-20">
+        <h1 className="-translate-y-8 text-center text-3xl font-bold">
+          Dani Festas
+        </h1>
         <p className="text-md mt-6 text-justify font-medium">
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever

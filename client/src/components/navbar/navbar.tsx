@@ -9,8 +9,8 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { href: "./landingpage", text: "Home" },
-  { href: "./decoracoes", text: "Mini-Table" },
+  { href: "/landingpage", text: "Home" },
+  { href: "/decoracoes", text: "Mini-Table" },
   { href: "#", text: "Decorações" },
   { href: "#", text: "Últimos Eventos" },
   { href: "#", text: "Sobre" },
@@ -25,7 +25,7 @@ function Navbar() {
             <div className="flex items-center space-x-3 rtl:space-x-reverse">
               <Image
                 src={logoP}
-                height={75}
+                height={40}
                 width={0}
                 className="max-w-20 rounded-lg"
                 alt="asd"
