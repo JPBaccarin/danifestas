@@ -2,13 +2,14 @@
 import { Facebook, Instagram, UserCog } from "lucide-react";
 import Link from "next/link";
 import { ModeToggle } from "../ui/theme-toggler";
-import logoP from "../../../public";
+import { logoP } from "../../../public";
+
 import Image from "next/image";
 
 const Footer: React.FC = () => (
-  <footer className="bottom-1 w-full bg-gray-900 py-6 text-white ">
+  <footer className="bottom-1 w-full bg-gray-900 py-6 text-white  ">
     <div className="container mx-auto flex flex-wrap justify-center md:justify-between ">
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center ">
         <Image
           src={logoP}
           height={150}
@@ -119,7 +120,7 @@ const Footer: React.FC = () => (
           </h4>
           <div className=" flex flex-row items-center justify-center gap-5">
             <Link
-              href="./admin/login"
+              href="/admin/login"
               className="rounded-md border border-border p-2 duration-100 hover:bg-gray-800"
             >
               <UserCog></UserCog>

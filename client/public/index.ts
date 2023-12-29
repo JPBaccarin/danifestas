@@ -1,2 +1,3 @@
-import logoP from "./logo.jpg";
-export default logoP 
+    import logoP from "./logo.jpg";
+    import abelhaSvg from "./abelha.svg"
+    export {abelhaSvg,logoP }  

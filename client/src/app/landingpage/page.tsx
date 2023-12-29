@@ -6,6 +6,7 @@ import React from "react";
 import Whatsb from "@/components/whatsappbutton/whatsb";
 import Hero2 from "@/components/landingpage/hero2/hero2";
 import { CarouselPlugin } from "@/components/landingpage/carousel/carousel";
+import HeroP from "@/components/landingpage/heropartners/herop";
 
 function Landingpage() {
   return (
@@ -14,9 +15,10 @@ function Landingpage() {
       <CarouselPlugin></CarouselPlugin>
       <Hero1></Hero1>
       <Hero2></Hero2>
-      <div className="mt-8">  
+      <div className="mx-0 mt-8 sm:m-4">
         <Gallery></Gallery>
       </div>
+      <HeroP></HeroP>
     </div>
   );
 }
