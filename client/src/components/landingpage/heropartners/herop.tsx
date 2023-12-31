@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import React, { useEffect, useRef } from "react";
 
 const HeroP: React.FC = () => {
@@ -47,13 +48,16 @@ const HeroP: React.FC = () => {
       <h5 className="text my-2 mb-4 text-center text-3xl font-bold text-foreground">
         Nossos parceiros:
       </h5>
-      <div className="scroller__inner h-32 ">
+      <div className="scroller__inner  ">
         {imageUrls.map((imageUrl, index) => (
-          <img
-            key={index}
+          <Image
             src={imageUrl}
             alt={`Image ${index + 1}`}
-            className="rounded-sm"
+            key={index}
+            quality={100}
+            height={128}
+            width={250}
+            className=" "
           />
         ))}
       </div>

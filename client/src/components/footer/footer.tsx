@@ -8,12 +8,12 @@ import Image from "next/image";
 
 const Footer: React.FC = () => (
   <footer className="bottom-1 w-full bg-gray-900 py-6 text-white  ">
-    <div className="container mx-auto flex flex-wrap justify-center md:justify-between ">
-      <div className="flex flex-col items-center justify-center ">
+    <div className="container mx-auto flex flex-wrap justify-center sm:flex-nowrap  ">
+      <div className="mr-0 flex flex-col items-center justify-center md:mr-8 ">
         <Image
           src={logoP}
-          height={150}
-          width={0}
+          height={153.3}
+          width={128.6}
           className="max-h-32 rounded-lg"
           alt="asd"
         />
@@ -23,11 +23,12 @@ const Footer: React.FC = () => (
             target="_blank"
             href="https://api.whatsapp.com/send/?phone=5519993794432&text&type=phone_number&app_absent=0"
             className=" text-green-700 shadow-sm duration-300 hover:text-green-500 "
+            aria-label="whatsapp"
           >
             <svg
               stroke="currentColor"
               fill="currentColor"
-              stroke-width="0"
+              strokeWidth="0"
               viewBox="0 0 1024 1024"
               version="1.1"
               height="24px"
@@ -42,7 +43,8 @@ const Footer: React.FC = () => (
           <Link
             target="_blank"
             href="https://www.facebook.com/danifestasleme/"
-            className=" text-blue-700 shadow-sm  duration-300 hover:text-blue-500 "
+            className=" text-blue-600 shadow-sm  duration-300 hover:text-blue-500 "
+            aria-label="facebook"
           >
             <Facebook size={24} />
           </Link>
@@ -50,6 +52,7 @@ const Footer: React.FC = () => (
             target="_blank"
             href="https://www.instagram.com/danifestasleme/"
             className="  text-pink-700 shadow-sm  duration-300 hover:text-pink-500 "
+            aria-label="instagram"
           >
             <Instagram size={24} />
           </Link>
@@ -59,14 +62,14 @@ const Footer: React.FC = () => (
       </div>
       <div className="mt-6 flex w-full sm:justify-center md:mt-0 md:w-1/4 lg:w-1/5">
         <div>
-          <h4 className="mb-2 scroll-m-20 border-b border-gray-300 text-lg font-semibold tracking-tight first:mt-0">
+          <h5 className="mb-2 scroll-m-20 border-b border-gray-300 text-lg font-semibold tracking-tight first:mt-0">
             Links Rápidos
-          </h4>
+          </h5>
           <ul className=" text-gray-300/80">
             <li>
               <Link
                 className="leading-5 duration-300 hover:text-white [&:not(:first-child)]:mt-6"
-                href=""
+                href="/"
               >
                 {" "}
                 Início
@@ -104,9 +107,9 @@ const Footer: React.FC = () => (
       </div>
       <div className="md:w-/3 mt-6 flex w-full sm:justify-center md:mt-0 lg:w-1/4">
         <div>
-          <h4 className="mb-2 scroll-m-20 border-b border-gray-300/80 text-lg font-semibold tracking-tight first:mt-0">
+          <h5 className="mb-2 scroll-m-20 border-b border-gray-300/80 text-lg font-semibold tracking-tight first:mt-0">
             Entre em Contato
-          </h4>
+          </h5>
           <ul className=" text-gray-300/80">
             <li>Email: danielafraimundo@hotmail.com</li>
             <li>Telefone: (19) 99379-4432</li>
@@ -115,13 +118,14 @@ const Footer: React.FC = () => (
       </div>
       <div className="mt-6 flex w-full sm:justify-center md:mt-0 md:w-1/4 lg:w-1/5">
         <div>
-          <h4 className="mb-2 scroll-m-20 border-b border-gray-300/80 text-lg font-semibold tracking-tight first:mt-0">
+          <h5 className="mb-2 scroll-m-20 border-b border-gray-300/80 text-lg font-semibold tracking-tight first:mt-0">
             Login e tema
-          </h4>
+          </h5>
           <div className=" flex flex-row items-center justify-center gap-5">
             <Link
               href="/admin/login"
               className="rounded-md border border-border p-2 duration-100 hover:bg-gray-800"
+              aria-label="link de login"
             >
               <UserCog></UserCog>
             </Link>

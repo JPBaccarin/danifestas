@@ -13,9 +13,8 @@ interface NavLink {
 
 const navLinks: NavLink[] = [
   { href: "/landingpage", text: "Home" },
-  { href: "/decoracoes", text: "Mini-Table" },
   { href: "/decoracoes", text: "Decorações" },
-  { href: "#", text: "Últimos Eventos" },
+  { href: "/a", text: "Últimos Eventos" },
   { href: "/sobre", text: "Sobre" },
 ];
 
@@ -30,8 +29,8 @@ function Navbar() {
           <div className="flex items-center space-x-3 rtl:space-x-reverse">
             <Image
               src={logoP}
-              height={40}
-              width={0}
+              height={39.93}
+              width={45.95}
               className="max-w-20 rounded-lg"
               alt="asd"
             />
@@ -43,6 +42,7 @@ function Navbar() {
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 md:hidden"
+          aria-label="botão da navbar"
         >
           {isMenuOpen ? (
             <X className="h-5 w-5" />
@@ -58,7 +58,7 @@ function Navbar() {
           <ul className="flex flex-col items-center justify-center md:flex-row md:space-x-8 md:border-0 rtl:space-x-reverse">
             {navLinks.map((link, index) => (
               <li key={index}>
-                <Link href={link.href} passHref>
+                <Link href={link.href} aria-label={link.text}>
                   <div
                     className={`
                       block px-3 py-1 text-gray-900 duration-75 hover:scale-110 hover:border-b-2 hover:border-amber-950 hover:text-amber-900 dark:border-amber-600  dark:text-white hover:dark:border-amber-600 hover:dark:text-amber-500

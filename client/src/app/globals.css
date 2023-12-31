@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
   :root {
     --background: 0 0% 95%;
@@ -72,6 +73,10 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--workSans-font);
+  }
+  h1,h2,h3,h4{
+    font-family: var(--anton-font);
   }
 }
 
