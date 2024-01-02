@@ -30,12 +30,12 @@ const HeroP: React.FC = () => {
   };
 
   const imageUrls = [
-    "https://upload.wikimedia.org/wikipedia/commons/d/dd/Coca-Cola_logo_white.png",
+    "https://logospng.org/wp-content/uploads/mongodb.png",
     "https://logospng.org/wp-content/uploads/mariadb.png",
     "https://logospng.org/wp-content/uploads/mongodb.png",
     "https://logospng.org/wp-content/uploads/kaercher.png",
     "https://logospng.org/wp-content/uploads/vite-js-logo.png",
-    "https://upload.wikimedia.org/wikipedia/commons/d/dd/Coca-Cola_logo_white.png",
+    "https://logospng.org/wp-content/uploads/vite-js-logo.png",
   ];
 
   return (

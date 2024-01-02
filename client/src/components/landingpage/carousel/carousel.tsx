@@ -39,9 +39,9 @@ export function CarouselPlugin() {
         {imageUrls.map((imageUrl, index) => (
           <CarouselItem
             key={index}
-            className="bg-card shadow-none sm:basis-1/2  "
+            className="bg-card shadow-none sm:basis-1/2"
           >
-            <div className=" relative flex justify-center rounded-lg  bg-card">
+            <div className=" relative flex justify-center *:rounded-lg">
               <Card className="m-2 flex h-96 max-h-96 w-full items-center justify-center rounded-lg border border-none bg-card p-2 shadow-none ">
                 <Image
                   src={imageUrl}
@@ -51,7 +51,7 @@ export function CarouselPlugin() {
                   alt="imagem do carrossel"
                   objectFit="contain"
                   fill
-                  className="duration-[1.5s] m-2 h-full  rounded-lg opacity-0 transition-opacity sm:h-96 sm:max-h-96"
+                  className="duration-[1.5s] m-2 h-full rounded-lg opacity-0 transition-opacity sm:h-96 sm:max-h-96"
                   onLoadingComplete={(image) =>
                     image.classList.remove("opacity-0")
                   }

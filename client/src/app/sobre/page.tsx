@@ -1,63 +1,41 @@
-import { url } from "inspector";
-import { Link } from "lucide-react";
+import Link from "next/link";
 import React from "react";
-import { URL } from "url";
 
 function page() {
   return (
     <div>
       <div className="min-w-screen flex min-h-screen items-center justify-center bg-fixed">
-        <span className="text-5xl font-bold">Conheça nossa história</span>
+        <h1 className="text-5xl font-bold">Conheça nossa história</h1>
       </div>
       <div className="min-w-screen flex min-h-screen flex-col items-center justify-center bg-blue-100 bg-fixed">
-        <span className="text-md p-20 text-justify font-semibold">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam euismod
-          dui arcu, et feugiat tellus dictum nec. Curabitur id lorem vitae erat
-          tristique malesuada. Etiam eget velit diam. Aliquam sed dui fermentum,
-          rutrum ipsum sit amet, sodales metus. Integer sagittis tempor neque,
-          sed cursus magna bibendum et. Aenean et molestie dolor. Vestibulum
-          ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-          curae; Quisque volutpat ipsum quis lorem convallis, in cursus magna
-          posuere. Donec et consequat ex. In augue eros, suscipit pulvinar
-          viverra in, vehicula eget dolor. Nunc quam justo, gravida nec arcu
-          non, semper molestie ipsum. Sed scelerisque dolor sit amet nulla
-          facilisis mattis. Vestibulum sit amet metus malesuada, ultricies dolor
-          a, gravida neque. Suspendisse vitae viverra eros. Nunc dictum nunc eu
-          eros sollicitudin, sit amet sagittis ligula maximus. Phasellus quis
-          placerat nulla. Sed lacinia, dolor posuere pretium cursus, quam diam
-          laoreet eros, eget ultricies turpis massa ac neque. Etiam diam dui,
-          eleifend quis commodo varius, sollicitudin in libero. Mauris vel
-          consequat orci, eu mollis sem. Nulla eget convallis tellus. Vivamus
-          viverra sem metus, eu malesuada augue aliquet eget. Quisque vel auctor
-          justo. Maecenas non commodo orci. Fusce erat purus, consectetur sit
-          amet pretium facilisis, tincidunt sed tellus. Nam rhoncus maximus
-          lobortis. Fusce luctus, nibh a consectetur congue, turpis felis porta
-          ex, id fermentum arcu nibh vel felis. Vivamus vestibulum tristique
-          eros at imperdiet. Aliquam erat volutpat. Vestibulum eu quam
-          elementum, congue turpis quis, rhoncus nunc. Maecenas nec ligula nisi.
-          Vivamus finibus magna in nisl posuere laoreet. In interdum magna vitae
-          lacus ullamcorper maximus. Sed consectetur magna et ex fermentum
-          tempus. Nullam non fringilla lorem, ut mollis neque. Sed consequat
-          turpis convallis feugiat posuere. In sollicitudin tincidunt felis at
-          blandit. Nulla facilisi. Integer vulputate nibh mauris, sed ultricies
-          eros dapibus id. Integer ultricies risus a varius mattis. Morbi id
-          magna ultricies purus mattis pellentesque. Suspendisse vehicula nibh
-          enim. Nam condimentum varius lacinia. Morbi et tellus sapien. In
-          imperdiet, urna eu interdum dictum, turpis elit tempus massa, non
-          posuere orci neque eget est. Nunc id mi elit. Donec tristique est
-          nisl, sed tincidunt turpis auctor sit amet. Cras ut risus lacus. Cras
-          auctor nisl vel dui egestas mollis. Vestibulum facilisis vel urna quis
-          molestie. Proin sapien libero, aliquet eget feugiat nec, pellentesque
-          laoreet nisi. Orci varius natoque penatibus et magnis dis parturient
-          montes, nascetur ridiculus mus. Fusce ac imperdiet mauris, in
-          tincidunt turpis. Integer rhoncus interdum mattis. Integer interdum
-          neque vitae sagittis accumsan.
+        <span className="text-lg p-20 text-justify font-semibold">
+          Na DaniFestas, acreditamos que cada festa é única, assim como cada
+          pessoa que a celebra. Seja para comemorar os primeiros passos de uma
+          criança, o aniversário de um jovem ou uma festa corporativa, estamos
+          aqui para tornar cada ocasião verdadeiramente especial. Nossas festas
+          temáticas infantis são repletas de magia e imaginação, transportando
+          os pequenos para mundos mágicos onde seus sonhos se tornam realidade.
+          Com personagens adoráveis, decorações encantadoras e atividades
+          divertidas, garantimos que cada festa seja uma aventura única. Para os
+          adultos, oferecemos festas sofisticadas e cheias de estilo, adaptadas
+          aos gostos e personalidade de cada cliente. Seja uma festa elegante,
+          uma comemoração descontraída ou um evento corporativo, a DaniFestas
+          cuida de cada detalhe para que você possa aproveitar ao máximo cada
+          momento. Nosso compromisso vai além da organização impecável. Queremos
+          transmitir não apenas uma festa, mas sim um sentimento de alegria,
+          união e gratidão. Afinal, acreditamos que cada celebração é uma
+          oportunidade de fortalecer laços, criar memórias preciosas e celebrar
+          a vida. Junte-se a nós na jornada de transformar seus eventos em
+          experiências extraordinárias. Na DaniFestas, cada celebração é única,
+          assim como você. Deixe-nos fazer parte dos seus momentos especiais e
+          transformar seus sonhos em realidade.
         </span>
-        <div>
-          <button className="text-md rounded-3xl border border-blue-500 bg-blue-400 px-8 py-3 font-semibold text-slate-950 shadow-xl duration-200 hover:scale-110">
-            Veja nossas decorações
-          </button>
-        </div>
+        <Link
+            href="/decoracoes"
+            className=" mt-6 rounded-full border border-amber-700/25 bg-amber-500 p-4 font-semibold text-background shadow-md duration-200 hover:scale-110 hover:shadow-xl"
+          >
+            Decorações
+          </Link>
       </div>
     </div>
   );

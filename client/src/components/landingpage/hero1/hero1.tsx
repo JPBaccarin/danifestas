@@ -6,7 +6,7 @@ import Image from "next/image";
 function Hero1() {
   return (
     <div className="flex h-32 w-full py-5">
-      <div className="absolute left-1/2 sm:left-1/4">
+      <div className="absolute left-1/2 sm:left-1/4 translate-y-16">
         <Image
           src={abelhaSvg}
           width={0}
