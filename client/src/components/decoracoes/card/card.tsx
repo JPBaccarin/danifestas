@@ -50,7 +50,7 @@ const ItemCard: React.FC<ItemCardProps> = ({ category, title, images }) => {
           alt={title}
           objectFit="cover"
           fill
-          className="duration-[1.5s]  h-64 w-full cursor-pointer rounded-lg object-cover opacity-0 shadow-sm transition-opacity duration-150 hover:scale-[1.02] hover:shadow-md sm:h-72 sm:max-h-72 "
+          className="duration-[1.5s]  h-64 w-full cursor-pointer rounded-lg object-cover opacity-0 shadow-sm  duration-150 hover:duration-300 transition-all hover:scale-[1.02] hover:shadow-md sm:h-72 sm:max-h-72 "
           onLoadingComplete={(image) => image.classList.remove("opacity-0")}
           onClick={openLightbox}
         />

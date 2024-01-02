@@ -6,8 +6,9 @@ import FilterComponent, {
   FilteredData,
 } from "@/components/decoracoes/filter/filter";
 import SkeletonCard from "@/components/decoracoes/card/skeletoncard";
+import Minetable from "@/components/mine-table/minetable";
 
-const MyComponent: React.FC = () => {
+const Decoracoes: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [filteredData, setFilteredData] = useState<ItemCardProps[]>([]);
   const [uniqueCategories, setUniqueCategories] = useState<string[]>([]);
@@ -80,7 +81,7 @@ const MyComponent: React.FC = () => {
         categories={uniqueCategories}
         types={uniqueTypes}
         onFilterChange={handleFilterChange}
-      />
+      />  
 
       <div className="grid grid-cols-1 gap-4 sm:m-5 sm:grid-cols-2 md:grid-cols-3">
         {loading ? (
@@ -94,10 +95,11 @@ const MyComponent: React.FC = () => {
           // Renderiza os cards quando os dados estão prontos e filtrados
           filteredData.map((item, index) => <ItemCard key={index} {...item} />)
         )}
+      
       </div>
       <Whatsb />
     </div>
   );
 };
 
-export default MyComponent;
+export default Decoracoes;
