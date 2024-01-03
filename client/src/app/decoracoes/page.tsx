@@ -7,6 +7,7 @@ import FilterComponent, {
 } from "@/components/decoracoes/filter/filter";
 import SkeletonCard from "@/components/decoracoes/card/skeletoncard";
 import Minetable from "@/components/mine-table/minetable";
+import Filter3 from "@/components/decoracoes/filter/filter3";
 
 const Decoracoes: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -77,7 +78,7 @@ const Decoracoes: React.FC = () => {
 
   return (
     <div>
-      <FilterComponent
+      <Filter3
         categories={uniqueCategories}
         types={uniqueTypes}
         onFilterChange={handleFilterChange}

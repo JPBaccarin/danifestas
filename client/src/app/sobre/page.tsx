@@ -1,11 +1,13 @@
+import Filter2 from "@/components/decoracoes/filter/filter2";
 import Link from "next/link";
 import React from "react";
 
 function page() {
   return (
     <div>
-      <div className="min-w-screen flex min-h-screen items-center justify-center bg-fixed">
+      <div className="min-w-screen flex min-h-screen items-center justify-center bg-fixed flex-col">
         <h1 className="text-5xl font-bold">Conheça nossa história</h1>
+        <Filter2></Filter2>
       </div>
       <div className="min-w-screen flex min-h-screen flex-col items-center justify-center bg-blue-100 bg-fixed">
         <span className="text-lg p-20 text-justify font-semibold">
