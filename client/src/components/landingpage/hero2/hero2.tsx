@@ -7,7 +7,7 @@ function Hero2() {
     <div className="mx-0 flex flex-col items-center justify-center font-sans sm:mx-4 sm:flex-row">
       <div className="m-5 flex w-1/3 items-center justify-center rounded-md">
         <Image
-          src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg"
+          src="https://scontent.fqps5-1.fna.fbcdn.net/v/t1.6435-9/178955024_127976949357738_2692323452988227875_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=dd63ad&_nc_ohc=5F1HTrNeK00AX9P71_4&_nc_ht=scontent.fqps5-1.fna&oh=00_AfDLLJaUa-qaXQ2u3k4msJZ3hNx4z7N0wFUVpOt70XYl9g&oe=65BE7BC7"
           alt="foto danifestas"
           className="rounded-md"
           height={828}
@@ -15,7 +15,7 @@ function Hero2() {
         />
       </div>
       <div className="p-8 sm:w-2/3 sm:p-20 flex flex-col justify-center items-center">
-        <h1 className="-translate-y-8 text-center text-3xl font-bold">
+        <h1 className="-translate-y-8 text-center text-5xl font-bold">
           Dani Festas
         </h1>
         <p className="text-lg mt-6 text-justify font-semibold">

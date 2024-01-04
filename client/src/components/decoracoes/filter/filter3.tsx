@@ -59,8 +59,8 @@ const Filter3: React.FC<Filter3Props> = ({
         />
         <button
           type="button"
-          className={`inline-flex items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ${
-            showDropdown ? "bg-blue-700 dark:bg-blue-500" : ""
+          className={`inline-flex items-center rounded-full bg-[#E39CC1] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#dd8eb7] focus:outline-none focus:ring-4 focus:ring-[#fae5ec] ${
+            showDropdown ? "bg-[#dd8eb7]" : ""
           }`}
           onClick={toggleDropdown}
         >
@@ -84,41 +84,37 @@ const Filter3: React.FC<Filter3Props> = ({
           </svg>
         </button>
         {showDropdown && (
-          <div className="absolute right-0 translate-y-[170px] translate-x-2 mt-1 flex w-96 flex-col gap-2 divide-gray-100 rounded-lg bg-white p-4 shadow dark:bg-gray-700">
+          <div className="absolute right-0 z-10 mt-1 flex h-96 w-96 translate-x-2 translate-y-[215px] flex-col gap-2 divide-gray-100 overflow-y-auto rounded-lg bg-white p-4 accent-[#E39CC1] shadow dark:bg-gray-700">
+            <h1>Tipo</h1>
             {categories.map((category, index) => (
-              <label key={index} className="flex items-center gap-2">
+              <div key={index} className="mt-1 flex items-center gap-2">
                 <input
                   type="radio"
                   value={category}
                   checked={filterData.category === category}
                   onChange={() => handleRadioChange("category", category)}
-                  className="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+                  className="h-4 w-4 border border-pink-300 bg-gray-100 focus:ring-2 focus:ring-[#dd8eb7]"
                 />
-                {category || "Todas as Categorias"}
-              </label>
+                <label className="text-sm font-medium text-gray-900 dark:text-gray-300">
+                  {category || "Todas as Categorias"}
+                </label>
+              </div>
             ))}
+            <h1 className="mt-6">Modelo</h1>
             {types.map((type, index) => (
-              <label key={index} className="flex items-center gap-2">
+              <div key={index} className="mt-1 flex items-center gap-2">
                 <input
                   type="radio"
                   value={type}
                   checked={filterData.type === type}
                   onChange={() => handleRadioChange("type", type)}
-                  className="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+                  className="h-4 w-4 border border-pink-300 bg-gray-100 focus:ring-2 focus:ring-[#dd8eb7]"
                 />
-                {type || "Todos os Tipos"}
-              </label>
+                <label className="text-sm font-medium text-gray-900 dark:text-gray-300">
+                  {type || "Todos os Tipos"}
+                </label>
+              </div>
             ))}
-            <div className="mt-4 flex w-full justify-center gap-6">
-              <button className="rounded-full border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">
-                Aplicar
-              </button>
-              <button
-                className="rounded-full border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
-              >
-                Limpar
-              </button>
-            </div>
           </div>
         )}
       </div>

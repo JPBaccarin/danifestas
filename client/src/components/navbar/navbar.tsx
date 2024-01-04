@@ -23,7 +23,7 @@ function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-10 border-b-4 border-amber-300 bg-white shadow-md shadow-primary/5 dark:bg-primary-foreground">
+    <nav className="sticky top-0 z-50 border-b-4 border-amber-300 bg-white shadow-md shadow-primary/5 dark:bg-primary-foreground">
       <div className="mx-auto flex w-full flex-wrap items-center justify-between p-4">
         <Link href="#" passHref>
           <div className="flex items-center space-x-3 rtl:space-x-reverse">

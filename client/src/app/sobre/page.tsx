@@ -7,9 +7,8 @@ function page() {
     <div>
       <div className="min-w-screen flex min-h-screen items-center justify-center bg-fixed flex-col">
         <h1 className="text-5xl font-bold">Conheça nossa história</h1>
-        <Filter2></Filter2>
       </div>
-      <div className="min-w-screen flex min-h-screen flex-col items-center justify-center bg-blue-100 bg-fixed">
+      <div className="min-w-screen flex min-h-screen flex-col items-center justify-center bg-blue-100 bg-fixed dark:bg-slate-800">
         <span className="text-lg p-20 text-justify font-semibold">
           Na DaniFestas, acreditamos que cada festa é única, assim como cada
           pessoa que a celebra. Seja para comemorar os primeiros passos de uma
