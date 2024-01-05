@@ -9,7 +9,7 @@ import { CarouselPlugin } from "@/components/landingpage/carousel/carousel";
 import HeroP from "@/components/landingpage/heropartners/herop";
 import { Carousel } from "@/components/ui/carousel";
 
-function Landingpage() {
+function Page() {
   return (
     <div>
       <Whatsb></Whatsb>
@@ -26,4 +26,4 @@ function Landingpage() {
   );
 }
 
-export default Landingpage;
+export default Page;

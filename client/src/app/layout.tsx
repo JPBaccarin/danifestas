@@ -51,7 +51,7 @@ export default function RootLayout({
         <body className={`${worksans.variable} ${anton.variable}`}>
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="light"
             enableSystem
             disableTransitionOnChange
           >
