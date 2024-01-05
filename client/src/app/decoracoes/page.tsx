@@ -37,18 +37,18 @@ const Decoracoes: React.FC = () => {
       ],
     },
     {
-      category: "Infantil",
+      category: "Decoração comum",
       event: "Casamento",
       type: "Adulto",
       title: "Neon Party",
       images: [
         "https://scontent.fqps5-1.fna.fbcdn.net/v/t39.30808-6/362945985_665644415598351_666533672258944326_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=3635dc&_nc_ohc=g8PjLeviSZgAX_4AT5v&_nc_ht=scontent.fqps5-1.fna&oh=00_AfB49xfg1RpeHuMF3ISJ5v95TPLAoXLhAANkSCAXakPqdw&oe=659C06D0",
-        "https://scontent.fqps5-1.fna.fbcdn.net/v/t39.30808-6/363744576_665644535598339_775625120969484636_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=3635dc&_nc_ohc=dld_m27lQT0AX9cu05P&_nc_ht=scontent.fqps5-1.fna&oh=00_AfAD0uJ4C11rnQo87veotigMTUGfQxNPc9hg_WKgF25l9w&oe=659B2407",        
-        "https://scontent.fqps5-1.fna.fbcdn.net/v/t39.30808-6/362946795_665644372265022_166551565214021231_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=3635dc&_nc_ohc=anq7wVR2VyoAX_ofV_E&_nc_ht=scontent.fqps5-1.fna&oh=00_AfBIJAASC7FWjDNmctUTS_6JjoZZ064k2xG3d9R6P5LK-w&oe=659B6624",        
+        "https://scontent.fqps5-1.fna.fbcdn.net/v/t39.30808-6/363744576_665644535598339_775625120969484636_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=3635dc&_nc_ohc=dld_m27lQT0AX9cu05P&_nc_ht=scontent.fqps5-1.fna&oh=00_AfAD0uJ4C11rnQo87veotigMTUGfQxNPc9hg_WKgF25l9w&oe=659B2407",
+        "https://scontent.fqps5-1.fna.fbcdn.net/v/t39.30808-6/362946795_665644372265022_166551565214021231_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=3635dc&_nc_ohc=anq7wVR2VyoAX_ofV_E&_nc_ht=scontent.fqps5-1.fna&oh=00_AfBIJAASC7FWjDNmctUTS_6JjoZZ064k2xG3d9R6P5LK-w&oe=659B6624",
       ],
     },
     {
-      category: "Empresarial",
+      category: "Mini-table",
       event: "Casamento",
       type: "Empresarial",
       title: "Decoração Formal",
@@ -103,7 +103,7 @@ const Decoracoes: React.FC = () => {
         categories={uniqueCategories}
         types={uniqueTypes}
         onFilterChange={handleFilterChange}
-      />  
+      />
 
       <div className="grid grid-cols-1 gap-4 sm:m-5 sm:grid-cols-2 md:grid-cols-3">
         {loading ? (
@@ -117,7 +117,6 @@ const Decoracoes: React.FC = () => {
           // Renderiza os cards quando os dados estão prontos e filtrados
           filteredData.map((item, index) => <ItemCard key={index} {...item} />)
         )}
-      
       </div>
       <Whatsb />
     </div>
