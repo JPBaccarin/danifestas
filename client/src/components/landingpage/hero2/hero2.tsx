@@ -4,12 +4,12 @@ import Link from "next/link";
 
 function Hero2() {
   return (
-    <div className="mx-0 flex flex-col items-center justify-center font-sans sm:mx-4 sm:flex-row">
-      <div className="m-5 flex w-1/3 items-center justify-center rounded-md">
+    <div className="mx-0 flex flex-col items-center justify-center font-sans sm:mx-4 md:flex-row">
+      <div className=" m-5 md:mt-2 flex md:w-1/3 items-center justify-center rounded-md">
         <Image
           src="https://scontent.fqps5-1.fna.fbcdn.net/v/t1.6435-9/178955024_127976949357738_2692323452988227875_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=dd63ad&_nc_ohc=5F1HTrNeK00AX9P71_4&_nc_ht=scontent.fqps5-1.fna&oh=00_AfDLLJaUa-qaXQ2u3k4msJZ3hNx4z7N0wFUVpOt70XYl9g&oe=65BE7BC7"
           alt="foto danifestas"
-          className="rounded-md"
+          className="rounded-md h-full"
           height={828}
           width={640}
         />

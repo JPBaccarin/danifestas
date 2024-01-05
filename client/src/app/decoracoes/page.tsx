@@ -37,7 +37,7 @@ const Decoracoes: React.FC = () => {
       ],
     },
     {
-      category: "Decoração comum",
+      category: "Infantil",
       event: "Casamento",
       type: "Adulto",
       title: "Neon Party",
@@ -48,7 +48,7 @@ const Decoracoes: React.FC = () => {
       ],
     },
     {
-      category: "Mini-table",
+      category: "Empresarial",
       event: "Casamento",
       type: "Empresarial",
       title: "Decoração Formal",
@@ -98,7 +98,7 @@ const Decoracoes: React.FC = () => {
   );
 
   return (
-    <div>
+    <div className="min-h-screen">
       <Filter3
         categories={uniqueCategories}
         types={uniqueTypes}

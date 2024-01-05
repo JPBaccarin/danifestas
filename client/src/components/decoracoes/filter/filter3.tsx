@@ -44,7 +44,7 @@ const Filter3: React.FC<Filter3Props> = ({
 
   return (
     <div className="m-5 mb-5 flex flex-col items-center justify-between gap-2">
-      <div className="m2 relative mb-5 flex w-full flex-col items-center justify-between gap-2 sm:flex-row">
+      <div className="m2 relative mb-5 flex w-full  items-center justify-between gap-2 sm:flex-row">
         <Input
           type="text"
           placeholder="Pesquisar..."
@@ -60,7 +60,7 @@ const Filter3: React.FC<Filter3Props> = ({
         <button
           type="button"
           className={`inline-flex items-center rounded-full bg-[#E39CC1] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#dd8eb7] focus:outline-none focus:ring-4 focus:ring-[#fae5ec] ${
-            showDropdown ? "bg-[#dd8eb7]" : ""
+            showDropdown ? "bg-[#dd8eb7]  " : ""
           }`}
           onClick={toggleDropdown}
         >
@@ -84,7 +84,7 @@ const Filter3: React.FC<Filter3Props> = ({
           </svg>
         </button>
         {showDropdown && (
-          <div className="absolute right-0 z-10 mt-1 flex h-96 w-96 translate-x-2 translate-y-[215px] flex-col gap-2 divide-gray-100 overflow-y-auto rounded-lg bg-white p-4 accent-[#E39CC1] shadow dark:bg-gray-700">
+          <div className="absolute right-0 z-10 mt-1 flex h-96 sm:w-96 translate-x-2 translate-y-[215px] flex-col gap-2 divide-gray-100 overflow-y-auto rounded-lg bg-white p-4 accent-[#E39CC1] shadow dark:bg-gray-700">
             <h1>Tipo</h1>
             {categories.map((category, index) => (
               <div key={index} className="mt-1 flex items-center gap-2">

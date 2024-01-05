@@ -78,30 +78,22 @@ const Footer: React.FC = () => (
             <li>
               <Link
                 className="leading-5 duration-300 hover:text-white [&:not(:first-child)]:mt-6"
-                href=""
+                href="/decoracoes"
               >
                 {" "}
-                Eventos
+                Decorações
               </Link>
             </li>
             <li>
               <Link
                 className="leading-5 duration-300 hover:text-white [&:not(:first-child)]:mt-6"
-                href=""
+                href="/sobre"
               >
                 {" "}
-                Serviços
+                Sobre nós
               </Link>
             </li>
-            <li>
-              <Link
-                className="leading-5 duration-300 hover:text-white [&:not(:first-child)]:mt-6"
-                href=""
-              >
-                {" "}
-                Contato
-              </Link>
-            </li>
+            
           </ul>
         </div>
       </div>

@@ -1,8 +1,8 @@
-"use client";
-import { zodResolver } from "@hookform/resolvers/zod";
+'use client'
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -14,32 +14,50 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   email: z.string().email("Email Inválido"),
   password: z.string().min(1, "A senha é necessária"),
 });
+
 export function FormLogin() {
-  // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {},
   });
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    if (values.email === "admin@email.com" && values.password === "admin") {
-      console.log("Login bem-sucedido! Usuário:", values.email);
-    } else {
-      console.log("Credenciais inválidas. Tente novamente.");
-    }
+  const router = useRouter();
+  axios.defaults.withCredentials = true;
 
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      // Envie uma requisição POST para a rota de login no backend usando Axios
+      const response = await axios.post("http://localhost:3003/login", {
+        email: values.email,
+        password: values.password,
+      });
+
+      // Verifique o status da resposta
+      if (response.status === 200) {
+        // Se o login for bem-sucedido, redirecione para a rota privada
+        const redirectPath = localStorage.getItem("redirectPath") || "/";
+        router.push(redirectPath);
+        // Limpe a rota de redirecionamento salva
+        localStorage.removeItem("redirectPath");
+      } else {
+        // Se o login falhar, exiba uma mensagem de erro
+        console.error("Erro ao realizar o login:", response.data.message);
+      }
+    } catch (error) {
+      console.error("Erro ao realizar o login:", error);
+    }
   }
 
   return (
+  
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 mb-2">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="mb-2 space-y-8">
         <FormField
           control={form.control}
           name="email"

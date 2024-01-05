@@ -13,14 +13,12 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import axios from "axios";
+
 const formSchema = z.object({
   username: z
     .string()
-    .min(3, { message: "O nome de usuário deve ter no mínimo 3 caracteres" })
-    .regex(/^[a-zA-Z0-9_]+$/, {
-      message:
-        "O nome de usuário deve conter apenas letras, números e underscores",
-    }),
+    .min(3, { message: "O nome de usuário deve ter no mínimo 3 caracteres" }),
   email: z.string().email({ message: "O email fornecido não é válido" }),
   password: z
     .string()
@@ -39,27 +37,39 @@ formSchema.refine(
     message: "As senhas não coincidem ou não foram fornecidas corretamente",
   },
 );
+
 export function FormSignup() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {},
   });
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      // Simule uma chamada assíncrona para o backend (substitua por sua lógica real)
-      // const response = await api.post('/signup', values);
+      // Envie uma requisição POST para a rota de registro no backend usando Axios
+      const response = await axios.post("http://localhost:3003/register", values);
 
-      // Se a chamada for bem-sucedida, exibe o alerta
-      alert("Cadastro bem-sucedido! Usuário: " + values.username);
-
-      // Limpa os erros do formulário
-      form.clearErrors();
-    } catch (error) {
-      // Trate os erros da chamada ao backend (pode exibir um alerta de erro, se necessário)
-      console.error("Erro ao cadastrar", error);
+      // Verifique o status da resposta
+      if (response.status === 201) {
+        alert("Cadastro bem-sucedido! Usuário: " + values.username);
+        form.clearErrors();
+        console.log("sucesso ao cadastrar")
+      } else {
+        console.log("Resposta não esperada:", response);
+      }
+    } catch (error: any) {
+      if (error.response) {
+        // O servidor respondeu com um status de erro
+        console.error("Erro de resposta do servidor:", error.response.data);
+      } else if (error.request) {
+        // A solicitação foi feita, mas não houve resposta do servidor
+        console.error("Sem resposta do servidor:", error.request);
+      } else {
+        // Algo aconteceu ao configurar a solicitação que acionou um erro
+        console.error("Erro ao configurar a solicitação:", error.message);
+      }
     }
-  };
+  }
 
   return (
     <Form {...form}>

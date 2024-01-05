@@ -4,7 +4,6 @@ import "./globals.css";
 import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer/footer";
 import { ThemeProvider } from "@/components/ui/theme-provider";
-
 const worksans = Work_Sans({ subsets: ["latin"], variable: "--workSans-font" });
 const anton = Bungee({
   weight: "400",
@@ -49,18 +48,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body className={`${worksans.variable} ${anton.variable}`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Navbar />
-          {children}
-          <Footer />
-        </ThemeProvider>
-      </body>
+        <body className={`${worksans.variable} ${anton.variable}`}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Navbar />
+            {children}
+            <Footer />
+          </ThemeProvider>
+        </body>
     </html>
   );
 }
