@@ -41,7 +41,7 @@ const Filter3: React.FC<Filter3Props> = ({
     }));
     setShowDropdown(false);
   };
-
+  
   return (
     <div className="m-5 mb-5 flex flex-col items-center justify-between gap-2">
       <div className="m2 relative mb-5 flex w-full  items-center justify-between gap-2 sm:flex-row">

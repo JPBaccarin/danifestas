@@ -2,23 +2,23 @@
 import { Facebook, Instagram, UserCog } from "lucide-react";
 import Link from "next/link";
 import { ModeToggle } from "../ui/theme-toggler";
-import { logoP } from "../../../public";
+import { logoP, logoV } from "../../../public";
 
 import Image from "next/image";
 
 const Footer: React.FC = () => (
-  <footer className="bottom-1 w-full bg-gray-900 py-6 text-white  ">
+  <footer className="bottom-1 w-full bg-gray-900 py-6 text-white z-50">
     <div className="container mx-auto flex flex-wrap justify-center sm:flex-nowrap  ">
       <div className="mr-0 flex flex-col items-center justify-center md:mr-8 ">
         <Image
-          src={logoP}
-          height={153.3}
-          width={128.6}
-          className="max-h-32 rounded-lg"
+          src={logoV}
+          height={200}
+          width={200}
+          className="max-h-32 rounded-[3rem]"
           alt="asd"
         />
 
-        <div className="flex w-full items-center justify-between pt-2 text-gray-300">
+        <div className="flex w-full items-center justify-center gap-6 pt-2 text-gray-300">
           <Link
             target="_blank"
             href="https://api.whatsapp.com/send/?phone=5519993794432&text&type=phone_number&app_absent=0"

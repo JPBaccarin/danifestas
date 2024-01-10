@@ -21,36 +21,28 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-app.post("/decorations", upload.array("images", 20), async (req, res) => {
-  const { titulo, tipo, categoria, tema } = req.body;
-  const images: Express.Multer.File[] = req.files as Express.Multer.File[];
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
 
   try {
-    // Adicionar decoração
-    const decorationQuery = "INSERT INTO decoracoes (titulo, tipo, categoria, tema) VALUES (?, ?, ?, ?)";
-    const decorationValues = [titulo, tipo, categoria, tema];
+    const user = await query("SELECT user_id, email, password FROM users WHERE email = ?", [email]);
 
-    // Execute a consulta para adicionar a decoração
-    const resultDecoration = await query(decorationQuery, decorationValues);
+    if (user.length > 0) {
+      const userId = user[0].user_id;
+      const storedPassword = user[0].password;
 
-    // Verifique se a inserção da decoração foi bem-sucedida
-    if (resultDecoration && resultDecoration[0] && resultDecoration[0].insertId) {
-      const id_deco = resultDecoration[0].insertId;
+      const passwordMatch = await bcrypt.compare(password, storedPassword);
 
-      // Adicionar imagens associadas à decoração
-      const imageQuery = "INSERT INTO imagens (id_deco, url) VALUES (?, ?)";
-      const imageValues = images.map((image) => [id_deco, `data:image/jpeg;base64,${image.buffer.toString("base64")}`]);
-
-      // Execute a consulta para adicionar as imagens
-      await Promise.all(imageValues.map((values) => query(imageQuery, values)));
-
-      res.status(201).json({ message: "Decoração adicionada com sucesso!" });
-    } else {
-      res.status(500).json({ error: "Erro ao adicionar decoração. ID não disponível." });
+      if (passwordMatch) {
+        const token = createToken(userId);
+        res.json({ token });
+      } else {
+        res.status(401).json({ error: "Credenciais inválidas" });
+      }
     }
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Erro ao adicionar decoração." });
+    console.error("Erro ao realizar o login", error); // Correção aqui
+    res.status(500).json({ error: "Erro ao realizar o login" });
   }
 });
 
@@ -94,21 +86,20 @@ app.post("/login", async (req, res) => {
     const user = await query("SELECT user_id, email, password FROM users WHERE email = ?", [email]);
 
     if (user.length > 0) {
-      const userId = user[0].id;
+      const userId = user[0].user_id; // Correção aqui
       const storedPassword = user[0].password;
 
       const passwordMatch = await bcrypt.compare(password, storedPassword);
 
       if (passwordMatch) {
-        const userId = user[0].id;
-        const token = createToken(userId); // Use a função para gerar o token
+        const token = createToken(userId);
         res.json({ token });
       } else {
         res.status(401).json({ error: "Credenciais inválidas" });
       }
     }
   } catch (error) {
-    console.error("Erro ao realizar o login:", error);
+    console.error("Erro ao realizar o login", error); // Correção aqui
     res.status(500).json({ error: "Erro ao realizar o login" });
   }
 });

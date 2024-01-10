@@ -6,6 +6,7 @@ function Hero2() {
   return (
     <div className="mx-0 flex flex-col items-center justify-center font-sans sm:mx-4 md:flex-row">
       <div className=" m-5 md:mt-2 flex md:w-1/3 items-center justify-center rounded-md">
+        <div className="md:w-[400px] md:h-[400px] md:absolute md:bg-[#94AAD5] md:-translate-x-7 md:-translate-y-6 md:-z-10 md:rounded-md md:flex hidden"></div>
         <Image
           src="https://scontent.fqps5-1.fna.fbcdn.net/v/t1.6435-9/178955024_127976949357738_2692323452988227875_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=dd63ad&_nc_ohc=5F1HTrNeK00AX9P71_4&_nc_ht=scontent.fqps5-1.fna&oh=00_AfDLLJaUa-qaXQ2u3k4msJZ3hNx4z7N0wFUVpOt70XYl9g&oe=65BE7BC7"
           alt="foto danifestas"
@@ -33,9 +34,9 @@ function Hero2() {
         <div>
           <Link
             href="/decoracoes"
-            className=" mt-6 rounded-full text-center border w-fit flex justify-center items-center border-amber-700/25 bg-amber-500 p-4 font-semibold text-background shadow-md duration-200 hover:scale-110 hover:shadow-xl"
+            className=" mt-6 rounded-full text-center border w-fit flex justify-center items-center border-[#E6C661]/25 bg-[#F3CB3F] p-4 font-semibold text-background shadow-md duration-200 hover:scale-110 hover:shadow-xl"
           >
-            Ver decorações <span className="pl-3 hover:scale-110 duration-75">❱</span>
+            Ver decorações <span className="pl-3 hover:scale-105 duration-300">❱</span>
           </Link>
         </div>
         

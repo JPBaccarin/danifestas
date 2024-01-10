@@ -1,15 +1,27 @@
-import Filter2 from "@/components/decoracoes/filter/filter2";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { colmeia1, colmeia2, colmeia3 } from "../../../public";
 
 function page() {
   return (
     <div>
-      <div className="min-w-screen flex min-h-screen items-center justify-center bg-fixed flex-col">
-        <h1 className="text-5xl font-bold">Conheça nossa história</h1>
+      <div
+        className="min-w-screen flex min-h-[75vh] flex-col items-center justify-center bg-fixed shadow-sm"
+        style={{
+          backgroundImage:
+            'url("https://i.pinimg.com/originals/5b/59/7d/5b597da1523e27d77931dca55feddb40.jpg")',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <h1 className="text-2xl font-bold text-white md:text-5xl">
+          Conheça nossa história
+        </h1>
       </div>
-      <div className="min-w-screen flex min-h-screen flex-col items-center justify-center bg-blue-100 bg-fixed dark:bg-slate-800">
-        <span className="text-lg p-20 text-justify font-semibold">
+      <div className="min-w-screen flex min-h-screen flex-col items-center justify-center bg-card bg-fixed ">
+        <span className="my-4 px-12 text-justify text-lg font-semibold md:-translate-y-[6.5rem]">
           Na DaniFestas, acreditamos que cada festa é única, assim como cada
           pessoa que a celebra. Seja para comemorar os primeiros passos de uma
           criança, o aniversário de um jovem ou uma festa corporativa, estamos
@@ -32,11 +44,18 @@ function page() {
           transformar seus sonhos em realidade.
         </span>
         <Link
-            href="/decoracoes"
-            className=" mt-6 rounded-full border border-amber-700/25 bg-amber-500 p-4 font-semibold text-background shadow-md duration-200 hover:scale-110 hover:shadow-xl"
-          >
-            Decorações
-          </Link>
+          href="/decoracoes"
+          className=" mb-4 flex w-fit items-center justify-center rounded-full border border-[#E6C661]/25 bg-[#F3CB3F] p-4 text-center font-semibold text-background shadow-md duration-200 hover:scale-110 hover:shadow-xl"
+        >
+          Ver decorações{" "}
+          <span className="pl-3 duration-300 hover:scale-105">❱</span>
+        </Link>
+        <div className="hidden md:absolute md:right-8 md:flex md:translate-y-40">
+          <Image src={colmeia2} height={120} alt="" />
+        </div>
+        <div className="hidden md:absolute md:left-8 md:flex md:translate-y-40">
+          <Image src={colmeia1} height={120} alt="" />
+        </div>
       </div>
     </div>
   );

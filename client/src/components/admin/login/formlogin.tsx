@@ -40,11 +40,7 @@ export function FormLogin() {
 
       // Verifique o status da resposta
       if (response.status === 200) {
-        // Se o login for bem-sucedido, redirecione para a rota privada
-        const redirectPath = localStorage.getItem("redirectPath") || "/";
-        router.push(redirectPath);
-        // Limpe a rota de redirecionamento salva
-        localStorage.removeItem("redirectPath");
+    
       } else {
         // Se o login falhar, exiba uma mensagem de erro
         console.error("Erro ao realizar o login:", response.data.message);

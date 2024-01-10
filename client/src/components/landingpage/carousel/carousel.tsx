@@ -32,7 +32,7 @@ export function CarouselPlugin() {
   return (
     <Carousel
       plugins={[plugin.current]}
-      className=" bg-amber-500/85"
+      className=" bg-[#E6C661]"
       onMouseLeave={plugin.current.reset}
     >
       <CarouselContent>

@@ -98,7 +98,7 @@ const Decoracoes: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen mt-16">
       <Filter3
         categories={uniqueCategories}
         types={uniqueTypes}
