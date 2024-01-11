@@ -1,46 +1,99 @@
-// src/server.ts
-import express from "express";
-import pool, { query } from "./db/db";
+import express, { Request, Response, RequestHandler } from "express";
+import { getConnection, query } from "./db/db";
 import bcrypt from "bcrypt";
 import multer from "multer";
 import jwt from "jsonwebtoken";
-
+import * as path from "path";
+import fs from "fs";
 const app = express();
 const PORT = 3003;
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
 const cors = require("cors");
+app.use(express.json());
+app.use(express.static("uploads"));
 
-const corsOptions = {
-  origin: "http://localhost:3000", // Troque para a origem real do seu aplicativo React
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true, // Permitir credenciais (cookies, tokens, etc.)
-  optionsSuccessStatus: 204,
-};
+// Permitir todas as origens para CORS (para desenvolvimento)
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
 
-app.use(cors(corsOptions));
 app.use(express.json());
 
-app.post("/login", async (req, res) => {
-  const { email, password } = req.body;
+const uploadsPath = "uploads";
+app.use("/uploads", express.static(uploadsPath));
+
+app.get("/uploads/:filename", (req, res) => {
+  const { filename } = req.params;
+  const filePath = path.join(uploadsPath, filename);
+
+  // Verificar se o arquivo existe antes de enviá-lo
+  if (fs.existsSync(filePath)) {
+    res.sendFile(filePath);
+  } else {
+    res.sendFile(filePath);
+  }
+});
+
+const storage = multer.diskStorage({
+  destination: "uploads/",
+  filename: (req, file, cb) => {
+    const ext = file.originalname.split(".").pop();
+    const uniqueFilename = `${Date.now()}_${Math.floor(Math.random() * 1000)}.${ext}`;
+    cb(null, uniqueFilename);
+  },
+});
+
+const upload = multer({ storage: storage });
+
+app.post("/decorations", upload.array("images", 10) as RequestHandler, async (req: Request, res: Response) => {
+  const { titulo, tipo, categoria, tema } = req.body;
 
   try {
-    const user = await query("SELECT user_id, email, password FROM users WHERE email = ?", [email]);
+    // Inserir dados da decoração no banco
+    const insertDecorationQuery = "INSERT INTO decoracoes (titulo, tipo, categoria, tema) VALUES (?, ?, ?, ?)";
+    const decorationResult = await query(insertDecorationQuery, [titulo, tipo, categoria, tema]);
 
-    if (user.length > 0) {
-      const userId = user[0].user_id;
-      const storedPassword = user[0].password;
+    const decorationId = decorationResult.insertId;
 
-      const passwordMatch = await bcrypt.compare(password, storedPassword);
+    // Processar nomes das imagens (sem o localhost:3003)
+    const imageNames = (req.files as Express.Multer.File[]).map((file) => file.filename);
 
-      if (passwordMatch) {
-        const token = createToken(userId);
-        res.json({ token });
-      } else {
-        res.status(401).json({ error: "Credenciais inválidas" });
-      }
-    }
+    // Inserir nomes das imagens associadas à decoração no banco
+    const insertImageQuery = `INSERT INTO imagens (id_deco, url) VALUES ${imageNames
+      .map((name) => `(${decorationId}, '${name}')`)
+      .join(", ")}`;
+
+    await query(insertImageQuery);
+
+    res.status(200).send("Decoração cadastrada com sucesso!");
   } catch (error) {
+    console.error("Erro durante o cadastro da decoração:", error);
+    res.status(500).send("Erro durante o cadastro da decoração");
+  }
+});
+
+// Rota para obter todas as decorações com imagens
+app.get("/decorations", async (req: Request, res: Response) => {
+  try {
+    const decorationsQuery = "SELECT * FROM decoracoes";
+    const decorationsResults = await query(decorationsQuery);
+
+    const decorationsWithImages = await Promise.all(
+      decorationsResults.map(async (decoration: any) => {
+        const imagesQuery = "SELECT url FROM imagens WHERE id_deco = ?";
+        const imagesResults = await query(imagesQuery, [decoration.id_deco]);
+        const images = imagesResults.map((image: any) => image.url);
+
+        return { ...decoration, images };
+      })
+    );
+
+    res.json(decorationsWithImages);
+  } catch (error) {
+    console.error("Erro ao obter decorações:", error);
+    res.status(500).send("Erro interno ao obter decorações");
     console.error("Erro ao realizar o login", error); // Correção aqui
     res.status(500).json({ error: "Erro ao realizar o login" });
   }

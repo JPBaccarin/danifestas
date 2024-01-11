@@ -52,7 +52,7 @@ export function FormLogin() {
 
   return (
   
-    <Form {...form}>
+    <Form {...form} >
       <form onSubmit={form.handleSubmit(onSubmit)} className="mb-2 space-y-8">
         <FormField
           control={form.control}
