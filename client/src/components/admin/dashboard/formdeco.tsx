@@ -29,32 +29,25 @@ function DecorationForm() {
     }
   
     try {
-      // Cria um objeto FormData para enviar os dados do formulário
       const formData = new FormData();
       formData.append("titulo", titulo);
       formData.append("tipo", tipo);
       formData.append("categoria", categoria);
       formData.append("tema", tema);
   
-      // Adiciona cada imagem ao FormData
       images.forEach((image) => {
         formData.append("images", image);
       });
   
-      // Faz a requisição POST para o endpoint de decorações no backend
       const response = await axios.post(
         "http://localhost:3003/decorations",
         formData,
       );
   
-      // Lida com a resposta do servidor
-      console.log("Resposta do servidor:", response.data);
-  
       toast({
         description: "Sua imagem foi cadastrada com Sucesso",
       });
     } catch (error) {
-      // Lida com erros durante a requisição
       console.error("Erro durante o envio do formulário:", error);
       toast({
         variant: "destructive",
@@ -64,11 +57,8 @@ function DecorationForm() {
     }
   }
 
-  // Manipulador de evento para alterações no input de arquivo
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // Verifica se foi selecionado algum arquivo
     if (e.target.files && e.target.files.length > 0) {
-      // Atualiza o estado com todas as imagens selecionadas
       setImages([...images, ...Array.from(e.target.files)]);
     }
   };
@@ -77,13 +67,13 @@ function DecorationForm() {
 
 
   return (
-    <div className="flex flex-col gap-8 p-12 border-[3px] bg-[#f3f3f3] rounded-md">
+    <div className="flex flex-col gap-8 p-12 border-[3px] bg-background rounded-md">
       <h2 className="text-xl text-center">Cadastro de Decorações</h2>
       <form onSubmit={handleFormSubmit} className="flex flex-col gap-4">
         <div className="flex flex-col gap-1">
           <label htmlFor="titulo" className="font-semibold">Título:</label>
           <input
-            className="block w-full max-w-[80%] rounded-lg border border-gray-300 bg-gray-50 px-4 py-[6px] text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+            className="block w-full max-w-[80%] rounded-lg border border-gray-300 bg-gray-50 px-4 py-[6px] text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-background dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             type="text"
             id="titulo"
             name="titulo"
@@ -96,7 +86,7 @@ function DecorationForm() {
         <div className="flex flex-col gap-1">
           <label htmlFor="tipo" className="font-semibold">Tipo:</label>
           <input
-            className="block w-full max-w-[60%] rounded-lg border border-gray-300 bg-gray-50 px-4 py-[6px] text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+            className="block w-full max-w-[60%] rounded-lg border border-gray-300 bg-gray-50 px-4 py-[6px] text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-background dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             type="text"
             id="tipo"
             name="tipo"
@@ -109,7 +99,7 @@ function DecorationForm() {
         <div className="flex flex-col gap-1">
           <label htmlFor="categoria" className="font-semibold">Categoria:</label>
           <input
-            className="block w-full max-w-[50%] rounded-lg border border-gray-300 bg-gray-50 px-4 py-[6px] text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+            className="block w-full max-w-[50%] rounded-lg border border-gray-300 bg-gray-50 px-4 py-[6px] text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-background dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             type="text"
             id="categoria"
             name="categoria"
@@ -122,7 +112,7 @@ function DecorationForm() {
         <div className="flex flex-col gap-1">
           <label htmlFor="tema" className="font-semibold">Tema:</label>
           <input
-            className="block w-full max-w-[70%] rounded-lg border border-gray-300 bg-gray-50 px-4 py-[6px] text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+            className="block w-full max-w-[70%] rounded-lg border border-gray-300 bg-gray-50 px-4 py-[6px] text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-background dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             type="text"
             id="tema"
             name="tema"
@@ -135,7 +125,7 @@ function DecorationForm() {
         <div className="flex flex-col gap-1">
           <label htmlFor="images" className="font-semibold">Selecione as imagens:</label>
           <input
-            className="block w-full text-md font-medium text-gray-900 border border-gray-300 rounded-r-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+            className="block w-full text-md font-medium text-gray-900 border border-gray-300 rounded-r-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-background dark:border-gray-600 dark:placeholder-gray-400"
             type="file"
             id="images"
             name="images"

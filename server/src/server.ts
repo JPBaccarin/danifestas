@@ -99,6 +99,74 @@ app.get("/decorations", async (req: Request, res: Response) => {
   }
 });
 
+// Rota para excluir uma decoração e suas imagens
+app.delete("/decorations/:id", async (req: Request, res: Response) => {
+  const decorationId = req.params.id;
+
+  try {
+    // Primeiro, obtemos os nomes dos arquivos das imagens associadas a essa decoração
+    const imagesQuery = "SELECT url FROM imagens WHERE id_deco = ?";
+    const imagesResults = await query(imagesQuery, [decorationId]);
+    const imagePaths = imagesResults.map((image: any) => path.join(uploadsPath, image.url));
+
+    // Em seguida, excluímos fisicamente os arquivos de imagem
+    const deleteImagesQuery = "DELETE FROM imagens WHERE id_deco = ?";
+    await query(deleteImagesQuery, [decorationId]);
+    // Agora, podemos excluir os registros no banco de dados
+    const deleteDecorationQuery = "DELETE FROM decoracoes WHERE id_deco = ?";
+    await query(deleteDecorationQuery, [decorationId]);
+
+    imagePaths.forEach((imagePath: string) => {
+      fs.unlinkSync(imagePath);
+    });
+    res.status(200).send("Decoração excluída com sucesso!");
+  } catch (error) {
+    console.error("Erro durante a exclusão da decoração:", error);
+    res.status(500).send("Erro durante a exclusão da decoração");
+  }
+});
+
+app.put("/decorations/:id", upload.array("images", 10) as RequestHandler, async (req: Request, res: Response) => {
+  const decorationId = req.params.id;
+  const { titulo, tipo, categoria, tema } = req.body;
+
+  try {
+    // Obter nomes das imagens antigas associadas a essa decoração
+    const oldImagesQuery = "SELECT url FROM imagens WHERE id_deco = ?";
+    const oldImagesResults = await query(oldImagesQuery, [decorationId]);
+    const oldImageNames = oldImagesResults.map((image: any) => image.url);
+
+    // Excluir imagens antigas associadas a essa decoração
+    const deleteImagesQuery = "DELETE FROM imagens WHERE id_deco = ?";
+    await query(deleteImagesQuery, [decorationId]);
+
+    // Remover fisicamente as imagens antigas do sistema de arquivos
+    oldImageNames.forEach((imageName: string) => {
+      const imagePath = path.join(uploadsPath, imageName); // Substitua 'uploadDir' pelo diretório real onde as imagens são armazenadas
+      fs.unlinkSync(imagePath);
+    });
+
+    // Atualizar dados da decoração no banco
+    const updateDecorationQuery = "UPDATE decoracoes SET titulo = ?, tipo = ?, categoria = ?, tema = ? WHERE id_deco = ?";
+    await query(updateDecorationQuery, [titulo, tipo, categoria, tema, decorationId]);
+
+    // Processar nomes das novas imagens (sem o localhost:3003)
+    const newImageNames = (req.files as Express.Multer.File[]).map((file) => file.filename);
+
+    // Inserir nomes das novas imagens associadas à decoração no banco
+    const insertImageQuery = `INSERT INTO imagens (id_deco, url) VALUES ${newImageNames
+      .map((name) => `(${decorationId}, '${name}')`)
+      .join(", ")}`;
+
+    await query(insertImageQuery);
+
+    res.status(200).send("Decoração atualizada com sucesso!");
+  } catch (error) {
+    console.error("Erro durante a atualização da decoração:", error);
+    res.status(500).send("Erro durante a atualização da decoração");
+  }
+});
+
 function createToken(userId: number): string {
   const secretKey = "suaChaveSecreta"; // Substitua com uma chave secreta real
   const expiresIn = "1h"; // Defina o tempo de expiração do token
