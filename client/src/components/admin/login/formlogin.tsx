@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,7 +15,8 @@ import {
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
+import { Toaster } from "@/components/ui/toaster";
+import { useToast } from "@/components/ui/use-toast";
 const formSchema = z.object({
   email: z.string().email("Email Inválido"),
   password: z.string().min(1, "A senha é necessária"),
@@ -26,13 +27,12 @@ export function FormLogin() {
     resolver: zodResolver(formSchema),
     defaultValues: {},
   });
-
+  const { toast } = useToast();
   const router = useRouter();
   axios.defaults.withCredentials = true;
-
+  const isLoggedIn = !!localStorage.getItem("token");
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      // Envie uma requisição POST para a rota de login no backend usando Axios
       const response = await axios.post("http://localhost:3003/login", {
         email: values.email,
         password: values.password,
@@ -40,19 +40,35 @@ export function FormLogin() {
 
       // Verifique o status da resposta
       if (response.status === 200) {
-    
+        const token = response.data.token;
+        localStorage.setItem("token", token);
+        router.push("/admin/dashboard");
+        
       } else {
-        // Se o login falhar, exiba uma mensagem de erro
         console.error("Erro ao realizar o login:", response.data.message);
+        toast({
+          variant: "destructive",
+          title: "Uh oh! Something went wrong.",
+          description: "There was a problem with your request.",
+        });
       }
     } catch (error) {
       console.error("Erro ao realizar o login:", error);
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem with your request.",
+      });
     }
   }
 
+  function handleLogout() {
+    localStorage.removeItem("token");
+    router.push("/"); // ou para a página de login, se aplicável
+  }
+
   return (
-  
-    <Form {...form} >
+    <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="mb-2 space-y-8">
         <FormField
           control={form.control}
@@ -67,7 +83,6 @@ export function FormLogin() {
                   {...field}
                 />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -85,19 +100,27 @@ export function FormLogin() {
                   {...field}
                 />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
         />
-
-        <Button type="submit" className="w-full ">
+        <Button type="submit" className="w-full">
           Login
         </Button>
       </form>
-      <Link href="./signup" className="text-xs text-muted-foreground/50">
-        Cadastrar conta
-      </Link>
+      {isLoggedIn ? (
+        <Button
+          onClick={handleLogout}
+          className="text-xs text-muted-foreground/50"
+        >
+          Logout
+        </Button>
+      ) : (
+        <Link href="./signup" className="text-xs text-muted-foreground/50">
+          Criar conta
+        </Link>
+      )}
+      <Toaster />
     </Form>
   );
 }

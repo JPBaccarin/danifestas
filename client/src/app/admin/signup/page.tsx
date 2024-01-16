@@ -1,14 +1,27 @@
+'use client'
 import { FormSignup } from "@/components/admin/signup/formsignup";
 import React from "react";
+import { useEffect } from "react";
+import { PrivateRoute } from "@/components/utils/authMiddleware";
+function SignUp() {
+useEffect(() => {
+ 
 
-function Login() {
+  return () => {
+    
+  }
+}, [])
+
+
   return (
-    <div className="flex h-screen items-center justify-center">
-      <div className="h-fit sm:w-1/3 rounded-lg border border-border bg-card p-4">
-        <FormSignup></FormSignup>
+    <PrivateRoute>
+      <div className="flex h-screen items-center justify-center">
+        <div className="h-fit rounded-lg border border-border bg-card p-4 sm:w-1/3">
+          <FormSignup></FormSignup>
+        </div>
       </div>
-    </div>
+    </PrivateRoute>
   );
 }
 
-export default Login;
+export default SignUp;

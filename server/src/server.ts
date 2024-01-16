@@ -1,4 +1,4 @@
-import express, { Request, Response, RequestHandler } from "express";
+import express, { Request, Response, RequestHandler, NextFunction } from "express";
 import { getConnection, query } from "./db/db";
 import bcrypt from "bcrypt";
 import multer from "multer";
@@ -7,17 +7,22 @@ import * as path from "path";
 import fs from "fs";
 const app = express();
 const PORT = 3003;
-const cors = require("cors");
 app.use(express.json());
 app.use(express.static("uploads"));
-
+const cors = require("cors");
+const corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 // Permitir todas as origens para CORS (para desenvolvimento)
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization"); // Adicione Authorization ao header
   next();
-});
+})
 
 app.use(express.json());
 
@@ -147,7 +152,8 @@ app.put("/decorations/:id", upload.array("images", 10) as RequestHandler, async 
     });
 
     // Atualizar dados da decoração no banco
-    const updateDecorationQuery = "UPDATE decoracoes SET titulo = ?, tipo = ?, categoria = ?, tema = ? WHERE id_deco = ?";
+    const updateDecorationQuery =
+      "UPDATE decoracoes SET titulo = ?, tipo = ?, categoria = ?, tema = ? WHERE id_deco = ?";
     await query(updateDecorationQuery, [titulo, tipo, categoria, tema, decorationId]);
 
     // Processar nomes das novas imagens (sem o localhost:3003)
@@ -166,6 +172,24 @@ app.put("/decorations/:id", upload.array("images", 10) as RequestHandler, async 
     res.status(500).send("Erro durante a atualização da decoração");
   }
 });
+
+function authenticateToken(req: Request, res: Response, next: NextFunction) {
+  const token = req.headers.authorization?.split(" ")[1];
+
+  if (!token) {
+    return res.status(401).json({ error: "Token não fornecido" });
+  }
+
+  jwt.verify(token, "suaChaveSecreta", (err, user) => {
+    if (err) {
+      return res.status(403).json({ error: "Token inválido" });
+    }
+
+    // Adicione a propriedade 'user' ao objeto 'req'
+    (req as any).user = user;
+    next(); // Corrigido aqui
+  });
+}
 
 function createToken(userId: number): string {
   const secretKey = "suaChaveSecreta"; // Substitua com uma chave secreta real
@@ -200,14 +224,14 @@ app.post("/register", async (req, res) => {
   }
 });
 
-app.post("/login", async (req, res) => {
+app.post("/login", async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   try {
     const user = await query("SELECT user_id, email, password FROM users WHERE email = ?", [email]);
 
     if (user.length > 0) {
-      const userId = user[0].user_id; // Correção aqui
+      const userId = user[0].user_id;
       const storedPassword = user[0].password;
 
       const passwordMatch = await bcrypt.compare(password, storedPassword);
@@ -220,9 +244,14 @@ app.post("/login", async (req, res) => {
       }
     }
   } catch (error) {
-    console.error("Erro ao realizar o login", error); // Correção aqui
+    console.error("Erro ao realizar o login", error);
     res.status(500).json({ error: "Erro ao realizar o login" });
   }
+});
+
+app.get("/dashboard", authenticateToken, (req: Request, res: Response) => {
+  // Esta rota só será acessível se o token for válido
+  res.json({ message: "Bem-vindo ao dashboard!" });
 });
 
 app.listen(PORT, () => {
