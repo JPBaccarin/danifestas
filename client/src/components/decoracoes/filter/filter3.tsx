@@ -76,6 +76,7 @@ const Filter3: React.FC<Filter3Props> = ({
     setFilterData((prevData) => ({
       ...prevData,
       [key]: value,
+      search: "",
     }));
     setShowDropdown(false);
   };

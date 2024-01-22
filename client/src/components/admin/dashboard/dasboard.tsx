@@ -71,7 +71,11 @@ const Dashboard: React.FC = () => {
         const searchMatch =
           item.titulo.toLowerCase().includes(filterData.search.toLowerCase()) ||
           (item.tipo &&
-            item.tipo.toLowerCase().includes(filterData.search.toLowerCase()));
+            item.tipo.toLowerCase().includes(filterData.search.toLowerCase())) ||
+          (item.tema &&
+            item.tema.toLowerCase().includes(filterData.search.toLowerCase())) ||
+          (item.categoria &&
+            item.categoria.toLowerCase().includes(filterData.search.toLowerCase()));
 
         return categoryMatch && typeMatch && themeMatch && searchMatch;
       });
