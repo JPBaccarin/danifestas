@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,6 +17,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/components/ui/use-toast";
+
 const formSchema = z.object({
   email: z.string().email("Email Inválido"),
   password: z.string().min(1, "A senha é necessária"),
@@ -31,8 +32,19 @@ export function FormLogin() {
   const router = useRouter();
   axios.defaults.withCredentials = true;
   const isLoggedIn = !!localStorage.getItem("token");
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
+      if (!values.email && !values.password) {
+        // Toast para nenhum dado recebido
+        toast({
+          variant: "destructive",
+          title: "Opa! algo deu errado.",
+          description: "Nenhum dado recebido. Preencha email e senha e tente novamente.",
+        });
+        return;
+      }
+
       const response = await axios.post("http://localhost:3003/login", {
         email: values.email,
         password: values.password,
@@ -43,21 +55,22 @@ export function FormLogin() {
         const token = response.data.token;
         localStorage.setItem("token", token);
         router.push("/admin/dashboard");
-        
       } else {
         console.error("Erro ao realizar o login:", response.data.message);
+        // Toast para email ou senha incorretos
         toast({
           variant: "destructive",
-          title: "Uh oh! Something went wrong.",
-          description: "There was a problem with your request.",
+          title: "Opa! algo deu errado.",
+          description: "Email ou senha incorretos. Tente novamente.",
         });
       }
     } catch (error) {
       console.error("Erro ao realizar o login:", error);
+      // Toast para erro genérico
       toast({
         variant: "destructive",
-        title: "Uh oh! Something went wrong.",
-        description: "There was a problem with your request.",
+        title: "Opa! algo deu errado.",
+        description: "Houve um problema com a sua solicitação.",
       });
     }
   }
@@ -109,10 +122,7 @@ export function FormLogin() {
         </Button>
       </form>
       {isLoggedIn ? (
-        <Button
-          onClick={handleLogout}
-          className="text-xs text-muted-foreground/50"
-        >
+        <Button onClick={handleLogout} className="  w-full">
           Logout
         </Button>
       ) : (

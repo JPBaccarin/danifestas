@@ -11,9 +11,24 @@ export const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({
 
     if (!token) {
       // Se não houver token, redirecione para a página de login
-      router.replace("/login");
+      const timerId = setTimeout(() => {
+        router.replace("./login");
+      }, 2000);
+
+      // Limpe o timer ao desmontar o componente
+      return () => clearTimeout(timerId);
     }
   }, [router]);
 
-  return <>{children}</>;
+  return (
+    <>
+      {localStorage.getItem("token") ? (
+        children
+      ) : (
+        <div className="flex h-screen w-full items-center justify-center bg-background text-foreground">
+          <h1 className="text-3xl "> Faça login para acessar esta página.</h1>
+        </div>
+      )}
+    </>
+  );
 };
